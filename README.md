@@ -22,22 +22,31 @@ Example:
 4. Returning or exiting to home screen 
 
 
-When thinking about how to make my project user friendly, I took a lot of care in designing the layout of my project. As seen in this screenshot, there are 6 classes.
+When thinking about how to make my project user friendly, I took care in designing the layout of my project. As seen in this screenshot, there are 6 classes.
 
-AccountingLedgerApp: Here you'll find my main method and all of the Screens for my app.
+AccountingLedgerApp: Here you'll find my main method and all of the Screens for my app
 HomeFunctions: Stores all of the functioning code for my homeScreen.
-LedgerFunctions: Stores all of the functioning code for my ledgerScreen.
-ReportsFunctions: Stores all of the functioning code for my reportsScreen.
-Transaction: A class for constructing and getting my private Transaction values.
-Reader: A class for storing my buffered/file readers.
+LedgerFunctions: Stores all of the functioning code for my ledger
+ReportsFunctions: Stores all of the functioning code for my reports
+Transaction: A class for constructing and viewing private Transactions
+Reader: A class for storing buffered/file readers
+
+![image](https://github.com/user-attachments/assets/b36066dc-6746-467c-a52e-49aeb98f1ee2)
+
+
 
 Technical Information
+
 Language: Java
+
 Purpose: Capstone Project 1 Backend LTCA 
+
 Instructor: Matt Christenson
 
-Future Enhancements
-Adding support for multiple accounts.
+
+
+Future Enhancements--
+Adding support for multiple accounts, and 
 Integration of additional transaction types such as transfers and recurring payments.
 
 
