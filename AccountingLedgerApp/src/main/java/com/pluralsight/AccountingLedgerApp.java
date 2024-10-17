@@ -2,12 +2,11 @@ package com.pluralsight;
 
 
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
 
-import static com.pluralsight.HomeFunctions.*;
-import static com.pluralsight.LedgerFunctions.*;
 import static com.pluralsight.Reader.readTransactions;
-import static com.pluralsight.ReportsFunctions.*;
+import static com.pluralsight.Reader.transactionList;
+
 
 
 /* This the Main Class for my Accounting Ledger App
@@ -36,8 +35,25 @@ The Reports Screen will allow users to:
  */
 public class AccountingLedgerApp {
     public static Scanner scanner = new Scanner(System.in);
+    //RAM
+    static HashMap<String, Transaction> transactionList = readTransactions(); // storing all the entries or transactions
+    static HashMap<String, Transaction> transactionWithDeposits= new HashMap<>(); // storing deposit entries or transactions
+    static HashMap<String, Transaction> transactionWithPayments = new HashMap<>(); // storing payment entries or negative transactions
+
+  // create three objects of them and call their functions. or using their functions
+    static ReportsFunctions reportsFunctions  = new ReportsFunctions();
+    static HomeFunctions homeFunctions = new HomeFunctions();
+    static LedgerFunctions ledgerFunctions = new LedgerFunctions();
+
     public static void main(String[] args) throws IOException {
-        readTransactions();
+        homeScreen();
+        utilizingEachFunctions(); // issues.
+    }
+/// ask gabe not passing list (hashmap thru each function) or deposit and also create line break when adding
+    public static void utilizingEachFunctions() {
+        reportsFunctions.setUpData(transactionList);
+        homeFunctions.setUpData(transactionWithDeposits, transactionWithPayments, transactionList);
+        ledgerFunctions.setUpData(transactionWithDeposits, transactionWithPayments, transactionList);
     }
 
     public static void homeScreen() throws IOException {
@@ -45,8 +61,8 @@ public class AccountingLedgerApp {
         System.out.println(" D) Add a Deposit \n P) Make a Payment \n L) View Ledger \n X) Exit");
         String lexxsChoice = scanner.nextLine().toUpperCase().trim();
         switch(lexxsChoice) {
-            case "D": addDeposit();
-            case "P": makePayment();
+            case "D": homeFunctions.addDeposit();
+            case "P": homeFunctions.makePayment();
             case "L": ledgerScreen();
             case "X": System.exit(0);
             default:
@@ -61,9 +77,9 @@ public class AccountingLedgerApp {
         System.out.println(" A) Display all transactions \n D) Display all deposits \n P) Display payment history \n R) Search my Reports \n H) Return Home");
         String LexxStatements = scanner.nextLine().toUpperCase().trim();
         switch(LexxStatements) {
-            case "A": displayAll();
-            case "D": displayDeposits();
-            case "P": displayPayments();
+            case "A": ledgerFunctions.displayAll();
+            case "D": ledgerFunctions.displayDeposits();
+            case "P": ledgerFunctions.displayPayments();
             case "R": reportsScreen();
             case "H": homeScreen();
             default:
@@ -77,12 +93,12 @@ public class AccountingLedgerApp {
         System.out.println(" 1) Month to Date \n 2) Previous Month \n 3) Year to Date \n 4) Previous Year \n 5) Search by Vendor \n 0) Return Home");
         int lexxsReports = scanner.nextInt();
         switch(lexxsReports) {
-            case 1: monthToDate();
-            case 2: previousMonth();
-            case 3: yearToDate();
-            case 4: previousYear();
-            case 5: scanner.nextLine();
-                searchByVendor();
+            case 1: reportsFunctions.monthToDate();
+            case 2: reportsFunctions.previousMonth();
+            case 3: reportsFunctions.yearToDate();
+            case 4: reportsFunctions.previousYear();
+            //case 5: scanner.nextLine();
+                reportsFunctions.searchByVendor();
             case 0: homeScreen();
             default:
                 System.out.println("ERROR-- Please try again, acceptable entries are  1, 2, 3, 4, 5, or 0");
@@ -90,3 +106,4 @@ public class AccountingLedgerApp {
         }
     }
 }
+///need to update csv file not just read.. need to pass through array list
