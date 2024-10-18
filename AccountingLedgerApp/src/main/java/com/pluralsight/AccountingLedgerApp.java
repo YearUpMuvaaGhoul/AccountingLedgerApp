@@ -49,7 +49,7 @@ public class AccountingLedgerApp {
             case "X": System.exit(0);
             default:
                 scanner.nextLine();
-                System.out.println("I'm having a hard time finding what you're looking for. Please try again, make sure your response is D, P, L, or X.");
+                System.out.println("ERROR- I'm having a hard time finding what you're looking for. Please try again, make sure your response is D, P, L, or X.");
                 homeScreen();
         }
     }
@@ -61,13 +61,13 @@ public class AccountingLedgerApp {
 
         String lexxStatements = scanner.nextLine().toUpperCase().trim();
         switch(lexxStatements) {
-            case "A": displayAll();
+            case "A": displayAll(); readTransactions();
             case "D": displayDeposits();
             case "P": displayPayments();
             case "R": reportsScreen();
             case "H": homeScreen();
             default:
-                System.out.println("I'm having a hard time finding what you're looking for. Please try again, make sure your response is A, D, P, or R.");
+                System.out.println("ERROR- I'm having a hard time finding what you're looking for. Please try again, make sure your response is A, D, P, or R.");
                 ledgerScreen();
         }
     }
@@ -85,7 +85,7 @@ public class AccountingLedgerApp {
                 searchByVendor();
             case 0: homeScreen();
             default:
-                System.out.println("I'm having a hard time finding what you're looking for. Please try again, make sure your response is 1, 2, 3, 4, 5, or 0");
+                System.out.println("ERROR- I'm having a hard time finding what you're looking for. Please try again, make sure your response is 1, 2, 3, 4, 5, or 0");
                 reportsScreen();
         }
     }

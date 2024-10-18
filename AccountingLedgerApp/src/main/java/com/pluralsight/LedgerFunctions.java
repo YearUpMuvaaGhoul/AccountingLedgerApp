@@ -1,8 +1,8 @@
 package com.pluralsight;
 import java.io.IOException;
-import java.util.*;
-
+import java.util.Scanner;
 import static com.pluralsight.AccountingLedgerApp.*;
+import static com.pluralsight.Reader.readTransactions;
 import static com.pluralsight.Reader.transactionList;
 
 /*This is my LedgerFunctions class
@@ -13,7 +13,6 @@ displayPayments();
  */
 
 public class LedgerFunctions {
-
     public static void displayAll() throws IOException {
 
         System.out.println("Number of transactions: " + transactionList.size());
@@ -40,7 +39,7 @@ public class LedgerFunctions {
         System.out.println("All Deposit History:");
         for (Transaction trans : transactionList) {
             if (trans.getAmount() > 0) {
-                System.out.println(trans.toString());
+                System.out.println(trans.toString()); readTransactions();
             }
         }
         System.out.println("Press 'X' when you're ready to return to the Ledger menu");
