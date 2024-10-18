@@ -1,8 +1,6 @@
 package com.pluralsight;
 
 import java.text.DecimalFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 /*This is the Transaction class
 Serves as a way to get and set date|time|description|vendor|amount
@@ -10,13 +8,13 @@ Serves as a way to get and set date|time|description|vendor|amount
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
 public class Transaction {
 
-    private LocalDate date;
-    private LocalTime time;
+    private String date;
+    private String time;
     private String desc;
     private String vendor;
     private float amount;
 
-    public Transaction(LocalDate date, LocalTime time, String desc, String vendor, float amount) {
+    public Transaction(String date, String time, String desc, String vendor, float amount) {
         this.date = date;
         this.time = time;
         this.desc = desc;
@@ -24,11 +22,11 @@ public class Transaction {
         this.amount = amount;
     }
     public String getDate() {
-        return date.toString();
+        return date;
     }
 
     public String getTime() {
-        return time.toString();
+        return time;
     }
     public String getDesc() {
         return desc;

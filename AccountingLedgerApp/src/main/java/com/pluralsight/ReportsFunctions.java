@@ -2,10 +2,11 @@ package com.pluralsight;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Map;
+import java.util.Scanner;
 
 import static com.pluralsight.AccountingLedgerApp.*;
-//import static com.pluralsight.Reader.transactionList;
+import static com.pluralsight.Reader.transactionList;
 
 /*This is my ReportsFunctions class
 In this class you'll find the following methods:
@@ -17,16 +18,9 @@ searchByVendor(); -Should have an additional "return home" option
  */
 public class ReportsFunctions {
 
-    public Scanner scan = new Scanner(System.in);
+    public static Scanner scan = new Scanner(System.in);
 
-    //RAM
-    HashMap<String, Transaction> transactionList; // storing all the entries or transactions
-
-    public void setUpData(HashMap<String, Transaction>transactionList) {
-        this.transactionList = transactionList;
-    }
-
-    public void monthToDate() throws IOException {
+    public static void monthToDate() throws IOException {
         //[0] - Year, [1] - Month, [2] - Day
         System.out.println("Here are your Month to Date statements:");
         for (Map.Entry<String, Transaction> dateSet : transactionList.entrySet()) {
@@ -49,7 +43,7 @@ public class ReportsFunctions {
         }
     }
 
-    public void previousMonth() throws IOException {
+    public static void previousMonth() throws IOException {
         System.out.println("Here are your statements from the Previous Month:");
         for (Map.Entry<String, Transaction> dateSet : transactionList.entrySet()) {
             String[] splitDates = dateSet.getValue().getDate().split("-");
@@ -71,13 +65,13 @@ public class ReportsFunctions {
             System.out.println("Redirecting to Reports menu...");
             reportsScreen();
         } else {
-            System.out.println("Sorry, didn't catch that. Press 'X' to return to the Reports Menu");
+            System.out.println("Sorry,ERROR - Press 'X' to return to the Reports Menu");
             monthToDate();
         }
     }
 
-    public void yearToDate() throws IOException {
-        System.out.println("Here are your Year to Date statements:");
+    public static void yearToDate() throws IOException {
+        System.out.println("Here are your Year 2 Date statements:");
         for (Map.Entry<String, Transaction> dateSet : transactionList.entrySet()) {
             String[] splitDates = dateSet.getValue().getDate().split("-");
             LocalDate today = LocalDate.now();
@@ -97,7 +91,7 @@ public class ReportsFunctions {
         }
     }
 
-    public void previousYear() throws IOException {
+    public static void previousYear() throws IOException {
         System.out.println("Here are your Previous Year statements:");
         for (Map.Entry<String, Transaction> dateSet : transactionList.entrySet()) {
             String[] splitDates = dateSet.getValue().getDate().split("-");
@@ -113,12 +107,12 @@ public class ReportsFunctions {
             System.out.println("Redirecting to Reports menu...");
             reportsScreen();
         } else {
-            System.out.println("Sorry, didn't catch that. Press 'X' to return to the Reports Menu");
+            System.out.println("Sorry,ERROR-. Press 'X' to return to the Reports Menu");
             previousYear();
         }
     }
 
-    public void searchByVendor() throws IOException {
+    public static void searchByVendor() throws IOException {
         System.out.println("Search your statements by vendor \n Please enter the vendor name for your search: ");
         String vendorSearch = scanner.nextLine();
         System.out.println("Here are the vendors matching your search value:");
@@ -130,7 +124,7 @@ public class ReportsFunctions {
             }
         }
         if(i == 0) {
-            System.out.println("Sorry, we couldn't find a match for that vendor. Please try a new vendor search.");
+            System.out.println("Sorry, ERROR  we couldn't find a match for that vendor. Please try a new vendor search.");
             searchByVendor();
         }
         System.out.println(" Press 'V' to start a new Vendor Search \n Press 'H' to return home");
@@ -142,7 +136,7 @@ public class ReportsFunctions {
             homeScreen();
         }
         else {
-            System.out.println("error-- I'll redirect you to the Vendor Search.");
+            System.out.println("I didn't catch that, I'll redirect you to the Vendor Search.");
             searchByVendor();
         }
     }

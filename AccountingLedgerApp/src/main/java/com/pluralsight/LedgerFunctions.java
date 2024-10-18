@@ -1,10 +1,9 @@
 package com.pluralsight;
-
 import java.io.IOException;
 import java.util.*;
 
 import static com.pluralsight.AccountingLedgerApp.*;
-//import static com.pluralsight.Reader.transactionList;
+import static com.pluralsight.Reader.transactionList;
 
 /*This is my LedgerFunctions class
 In this class you'll find the following functions:
@@ -15,20 +14,7 @@ displayPayments();
 
 public class LedgerFunctions {
 
-
-    //RAM
-    HashMap<String, Transaction> transactionList; // storing all the entries or transactions
-    HashMap<String, Transaction> transactionWithDeposits; // storing deposit entries or transactions
-    HashMap<String, Transaction> transactionWithPayments; // storing payment entries or negative transactions
-
-    public void setUpData(HashMap<String, Transaction> transactionWithDeposits, HashMap<String, Transaction> transactionWithPayments, HashMap<String, Transaction> transactionList) {
-        this.transactionList = transactionList;
-        this.transactionWithPayments = transactionWithPayments;
-        this.transactionWithDeposits = transactionWithDeposits;
-    }
-
-
-    public void displayAll() throws IOException {
+    public static void displayAll() throws IOException {
         System.out.println("All Transaction History:");
         for (Map.Entry<String, Transaction> trans : transactionList.entrySet()) {
             System.out.println(trans.getValue().toString());
@@ -44,7 +30,7 @@ public class LedgerFunctions {
         }
     }
 
-    public void displayDeposits() throws IOException {
+    public static void displayDeposits() throws IOException {
         System.out.println("All Deposit History:");
         for (Map.Entry<String, Transaction> trans : transactionList.entrySet()) {
             if (trans.getValue().getAmount() > 0) {
@@ -62,7 +48,7 @@ public class LedgerFunctions {
         }
     }
 
-    public void displayPayments() throws IOException {
+    public static void displayPayments() throws IOException {
         System.out.println("All Payment History:");
         for (Map.Entry<String, Transaction> trans : transactionList.entrySet()) {
             if (trans.getValue().getAmount() < 0) {
