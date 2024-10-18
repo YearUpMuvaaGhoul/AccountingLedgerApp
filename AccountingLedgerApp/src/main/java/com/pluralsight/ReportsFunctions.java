@@ -2,10 +2,11 @@ package com.pluralsight;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Map;
+import java.util.ArrayList.*;
 import java.util.Scanner;
 
 import static com.pluralsight.AccountingLedgerApp.*;
+import static com.pluralsight.Reader.readTransactions;
 import static com.pluralsight.Reader.transactionList;
 
 /*This is my ReportsFunctions class
@@ -23,13 +24,13 @@ public class ReportsFunctions {
     public static void monthToDate() throws IOException {
         //[0] - Year, [1] - Month, [2] - Day
         System.out.println("Here are your Month to Date statements:");
-        for (Map.Entry<String, Transaction> dateSet : transactionList.entrySet()) {
-            String[] splitDates = dateSet.getValue().getDate().split("-");
+        for (Transaction dateSet: transactionList) {
+            String[] splitDates = dateSet.getDate().split("-");
             LocalDate today = LocalDate.now();
             int thisMonth = today.getMonthValue();
             int dayOfMonth = today.getDayOfMonth();
             if ((Integer.parseInt(splitDates[1]) == thisMonth) && (Integer.parseInt(splitDates[2]) <= dayOfMonth)) {
-                System.out.println(dateSet.getValue().toString());
+                System.out.println(dateSet.toString());
             }
         }
         System.out.println("Press 'X' when you're ready to return to the Reports menu");
@@ -45,8 +46,8 @@ public class ReportsFunctions {
 
     public static void previousMonth() throws IOException {
         System.out.println("Here are your statements from the Previous Month:");
-        for (Map.Entry<String, Transaction> dateSet : transactionList.entrySet()) {
-            String[] splitDates = dateSet.getValue().getDate().split("-");
+        for (Transaction dateSet : transactionList) {
+            String[] splitDates = dateSet.getDate().split("-");
             LocalDate today = LocalDate.now();
             int thisMonth = today.getMonthValue();
             int previousMonth;
@@ -56,7 +57,7 @@ public class ReportsFunctions {
                 previousMonth = thisMonth - 1;
             }
             if ((Integer.parseInt(splitDates[1]) == previousMonth)) {
-                System.out.println(dateSet.getValue().toString());
+                System.out.println(dateSet.toString());
             }
         }
         System.out.println("Press 'X' when you're ready to return to the Reports menu");
@@ -72,12 +73,12 @@ public class ReportsFunctions {
 
     public static void yearToDate() throws IOException {
         System.out.println("Here are your Year 2 Date statements:");
-        for (Map.Entry<String, Transaction> dateSet : transactionList.entrySet()) {
-            String[] splitDates = dateSet.getValue().getDate().split("-");
+        for (Transaction dateSet : transactionList) {
+            String[] splitDates = dateSet.getDate().split("-");
             LocalDate today = LocalDate.now();
             int thisYear = today.getYear();
             if ((Integer.parseInt(splitDates[0])) == ((thisYear))) {
-                System.out.println(dateSet.getValue().toString());
+                System.out.println(dateSet.toString());
             }
         }
         System.out.println("Press 'X' when you're ready to return to the Reports menu");
@@ -93,12 +94,12 @@ public class ReportsFunctions {
 
     public static void previousYear() throws IOException {
         System.out.println("Here are your Previous Year statements:");
-        for (Map.Entry<String, Transaction> dateSet : transactionList.entrySet()) {
-            String[] splitDates = dateSet.getValue().getDate().split("-");
+        for (Transaction dateSet : transactionList) {
+            String[] splitDates = dateSet.getDate().split("-");
             LocalDate today = LocalDate.now();
             int previousYear = today.getYear() - 1;
             if ((Integer.parseInt(splitDates[0])) == ((previousYear))) {
-                System.out.println(dateSet.getValue().toString());
+                System.out.println(dateSet); readTransactions();
             }
         }
         System.out.println("Press 'X' when you're ready to return to the Reports menu");
@@ -117,9 +118,9 @@ public class ReportsFunctions {
         String vendorSearch = scanner.nextLine();
         System.out.println("Here are the vendors matching your search value:");
         int i = 0;
-        for(Map.Entry<String, Transaction> vendorList : transactionList.entrySet()) {
-            if (vendorList.getValue().getVendor().equalsIgnoreCase(vendorSearch)) {
-                System.out.println(vendorList.getValue().toString());
+        for(Transaction vendorList : transactionList) {
+            if (vendorList.getVendor().equalsIgnoreCase(vendorSearch)) {
+                System.out.println(vendorList.toString()); readTransactions();
                 i++;
             }
         }

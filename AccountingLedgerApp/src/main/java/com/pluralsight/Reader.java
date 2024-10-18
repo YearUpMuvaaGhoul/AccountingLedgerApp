@@ -9,7 +9,7 @@ Here is where my buffered/file reader is stored
 When launched, my main method will start the readTransactions method automatically
  */
 public class Reader {
-    public static HashMap<String, Transaction> transactionList = new HashMap<>();
+    public static ArrayList<Transaction> transactionList = new ArrayList<>();
 
     public static void readTransactions() throws IOException {
         FileReader fileReader = new FileReader("src/main/resources/transactions.csv");
@@ -30,7 +30,7 @@ public class Reader {
                     String vendor = transactionLedger[3];
                     float amount = Float.parseFloat(transactionLedger[4]);
                     Transaction newTransaction = new Transaction(date, time, desc, vendor, amount);
-                    transactionList.put(date + time, newTransaction);
+                    transactionList.add( newTransaction);
                 }
             }
             homeScreen();

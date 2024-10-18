@@ -2,10 +2,10 @@ package com.pluralsight;
 
 import java.io.IOException;
 import java.util.Scanner;
-
 import static com.pluralsight.HomeFunctions.*;
 import static com.pluralsight.LedgerFunctions.*;
 import static com.pluralsight.Reader.readTransactions;
+import static com.pluralsight.Reader.transactionList;
 import static com.pluralsight.ReportsFunctions.*;
 
 
@@ -13,7 +13,7 @@ import static com.pluralsight.ReportsFunctions.*;
 Here is where the Screens of my App will live
 The Home screen will allow users to:
     D) Add deposit: Prompt user for deposit info and save to csv file
-    P) Make payment: Prompt user for debit info and save to csv file
+    P) Make payment: Prompt user for info (What it's for and who/amount) and save to csv file
     L) Ledger - Display the Ledger Screen
     X) Exit - Exit app
 The Ledger Screen will allow users to:
@@ -57,6 +57,8 @@ public class AccountingLedgerApp {
     public static void ledgerScreen() throws IOException {
         System.out.println("Welcome to your Ledger, which transaction history would you like to view?");
         System.out.println(" A) Display all transactions \n D) Display all deposits \n P) Display payment history \n R) Search my Reports \n H) Return Home");
+        System.out.println("Number of transactions: " + transactionList.size());
+
         String lexxStatements = scanner.nextLine().toUpperCase().trim();
         switch(lexxStatements) {
             case "A": displayAll();
@@ -73,8 +75,8 @@ public class AccountingLedgerApp {
     public static void reportsScreen() throws IOException {
         System.out.println("Welcome to your Reports, how would you like to view your statements?");
         System.out.println(" 1) Month to Date \n 2) Previous Month \n 3) Year to Date \n 4) Previous Year \n 5) Search by Vendor \n 0) Return Home");
-        int clancysReports = scanner.nextInt();
-        switch(clancysReports) {
+        int lexxReports = scanner.nextInt();
+        switch(lexxReports) {
             case 1: monthToDate();
             case 2: previousMonth();
             case 3: yearToDate();

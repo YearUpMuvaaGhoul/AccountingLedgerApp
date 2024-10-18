@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 
 /*This is the Transaction class
 Serves as a way to get and set date|time|description|vendor|amount
@@ -41,14 +42,20 @@ public class Transaction {
     }
 
     @Override
-    public String toString() {
-        DecimalFormat df = new DecimalFormat("0.00");
-        String amountDF = df.format(amount);
-        return
-                " Date: " + date + " | " +
-                        "Time: " + time + " | " +
-                        "Description: " + desc + " | " +
-                        "Vendor: " + vendor + " | " +
-                        "Amount: $" + amountDF;
+    public String toString(){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return String.format("%-10s | %-10s | %-40s | %-15s | $%5.2f", getDate(), getTime().format(String.valueOf(dateTimeFormatter)), getDesc(), getVendor(), getAmount());
     }
+
+//    @Override
+//     String toString() {
+//        DecimalFormat df = new DecimalFormat("0.00");
+//        String amountDF = df.format(getAmount());
+//        return
+//                " Date: " + getDate() + " | " +
+//                        "Time: " + getTime() + " | " +
+//                        "Description: " + getDesc() + " | " +
+//                        "Vendor: " + getVendor() + " | " +
+//                        "Amount: $" + amountDF;
+//    }
 }
